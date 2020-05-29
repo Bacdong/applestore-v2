@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- favicon for webpage -->
+    <link rel="shortcut icon" href="img/favicon/favicon.ico">
+    <!-- <link rel="shortcut icon" type="image/png" href="img/favicon/favicon.png"> -->
+    <!-- /favicon for webpage -->
+
+    <!-- Responsive library -->
+    <link rel="stylesheet" href="assets/css/gridLibrary.css">
+    <!-- /Responsive library -->
+
+    <!-- main style css -->
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <!-- /main style css -->
+
+    <!-- base style css -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <!-- base style css -->
+
+    <!-- google font trademark -->
+    <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;562;600;700&display=swap" rel="stylesheet">
+    <!-- /google font trademark-->
+
+    <!-- google font default -->
+    <link href="https://fonts.googleapis.com/css2?family=Manuale:wght@400;500;562;600;700&display=swap" rel="stylesheet">
+    <!-- /google font default -->
+
+    <title>Apple Store | Your Cart</title>
+</head>
+<body>
+    <!-- Header -->
+        <!-- require header at here -->
+    <!-- /Header -->
+
+    <section class="main-cart grid">
+        <section class="main-cart__container grid wide">
+            <section class="main-cart__container-title">
+                <h4 class="title">Your Cart</h4>
+            </section>
+            
+            <section class="main-cart__container-body">
+                <section class="main-cart__left l-8">
+                    <section class="main-cart__table">
+                        <table class="table-list">
+                            <thead class="table-list_heading">
+                                <th class="heading-title">Image</th>
+                                <th class="heading-title">Name</th>
+                                <th class="heading-title">Quantity</th>
+                                <th class="heading-title">Price</th>
+                            </thead>
+    
+                            <tbody class="table-list__body">
+                                <tr class="table-list__body-row">
+                                    <td class="table-list__body-column">
+                                        <img src="img/product/10000.png" alt="">
+                                    </td>
+                                    <td class="table-list__body-column">iPhone XR 64GB</td>
+                                    <td class="table-list__body-column">
+                                        <button class="btn-quantity" id="btn-quantity-down">-</button>
+                                        <input type="number" min="0" class="input-quantity" value="1" name="">
+                                        <button class="btn-quantity" id="btn-quantity-up">+</button>
+                                    </td>
+                                    <td class="table-list__body-column">$308</td>
+                                </tr>
+
+                                <tr class="table-list__body-row">
+                                    <td class="table-list__body-column">
+                                        <img src="img/product/10000.png" alt="">
+                                    </td>
+                                    <td class="table-list__body-column">iPhone XR 64GB</td>
+                                    <td class="table-list__body-column">
+                                        <button type="button" class="btn-quantity" id="btn-quantity-down">-</button>
+                                        <input type="number" min="0" class="input-quantity" value="1" name="">
+                                        <button type="button" class="btn-quantity" id="btn-quantity-up">+</button>
+                                    </td>
+                                    <td class="table-list__body-column">$308</td>
+                                </tr>
+
+                                <tr class="table-list__body-row">
+                                    <td class="table-list__body-column">
+                                        <img src="img/product/10000.png" alt="">
+                                    </td>
+                                    <td class="table-list__body-column">iPhone XR 64GB</td>
+                                    <td class="table-list__body-column">
+                                        <button class="btn-quantity" id="btn-quantity-down">-</button>
+                                        <input type="number" min="0" class="input-quantity" value="1" name="">
+                                        <button class="btn-quantity" id="btn-quantity-up">+</button>
+                                    </td>
+                                    <td class="table-list__body-column">$308</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </section>
+    
+                <section class="main-cart__right c-12 l-3 m-3">
+                    <div class="main-cart__right-top">
+                        <h4 class="main-cart__right-title">Cart Total</h4>
+    
+                        <ul class="main-cart__right-list">
+                            <li class="main-cart__right-item">
+                                Subtotal: 
+                                <span class="main-cart__right-item-span">$140</span>
+                            </li>
+                            <li class="main-cart__right-item">
+                                Delivery: 
+                                <span class="main-cart__right-item-span">Free</span>
+                            </li>
+                            <li class="main-cart__right-item">
+                                Total: 
+                                <span class="main-cart__right-item-span">$140</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="main-cart__right-active">
+                        <button class="btn-checkout">CHECKOUT</button>
+                    </div>
+                </section>
+            </section>
+        </section>
+    </section>
+</body>
+</html>

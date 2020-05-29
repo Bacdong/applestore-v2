@@ -1,0 +1,257 @@
+/* Sign in */
+/* header */
+header.header-login {
+    position: relative;
+    display: flex;
+    min-height: 9.6rem;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+a.header-login__link {
+    display: block;
+}
+
+header.header-login img {
+    padding: 1.2rem 0;
+}
+
+body.body-form {
+    width: 100%;
+    height: 100%;
+    background-color: #F2F2F2;
+    user-select: none;
+}
+
+main.container-form {
+    padding-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+section.main-form {
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+h3.title-form {
+    padding: 2rem 4rem;
+    font-size: 3.2rem;
+    font-weight: normal;
+    line-height: 3.6rem;
+    color: var(--text-color);
+}
+
+form.form-login {
+    width: 100%;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+form.form-login img {
+    width: 15rem;
+    padding: 1rem 0;
+}
+
+label.label-form {
+    width: 100%;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 1.2rem 0 0.2rem 0;
+}
+
+input.input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    border: 1px solid #b3b3b3;
+    border-radius: 2px;
+}
+
+input.input:focus,
+input.input:hover {
+    border: 1px solid #1dbfaf;
+}
+
+span.error {
+    font-size: 1.4rem;
+    color: red;
+    padding: 0.4rem 0 0rem 0;
+    /* display: none; */
+}
+
+button.btn-submit {
+    margin: 4rem 0 2.6rem 0;
+    width: 100%;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--white-color);
+    letter-spacing: 0.8px;
+    padding: 1.2rem 0;
+    border-radius: 8px;
+    background-color: #1dbfaf;
+    cursor: pointer;
+}
+
+button.btn-submit:hover {
+    transition: all ease 0.2s;
+    background-color: #05AF9E;
+}
+
+section.auth-forgot-password {
+    width: 100%;
+    text-align: center;
+    padding: 0 0 2.4rem 0;
+}
+
+a.forgot-password {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+a.forgot-password:hover {
+    opacity: 0.8;
+}
+
+p.terms {
+    font-size: 1.4rem;
+}
+
+section.auth-question-register {
+    width: 100%;
+    padding: 3rem 0;
+}
+
+p.register-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1.4rem 0;
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    color: #636d77;
+}
+
+a.register-link {
+    background: none;
+    border: none;
+    color: #1dbfaf;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+a.register-link:hover {
+    transition: all ease 0.2s;
+    text-decoration: underline;
+}
+
+a.forgot-password {
+    background: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a.forgot-password:hover {
+    opacity: 0.8;
+    transition: all ease 0.2s;
+}
+
+a.contact-phone {
+    font-size: 1.6rem;
+    color: #1dbfaf;
+}
+
+a.contact-phone:hover {
+    transition: all ease 0.2s;
+    text-decoration: underline;
+}
+/* /header */
+
+div.status {
+    height: 4rem;
+    line-height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-top: 1.2rem;
+    padding: 0.6rem 0;
+    width: 100%;
+}
+
+label.label-form.label-status {
+    flex-basis: 50%;
+    height: 4rem;
+    line-height: 1.6rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+input.input.input-status {
+    flex-basis: 20%;
+    height: 3rem;
+}
+
+
+/* alert */
+section.alert {
+    position: absolute;
+    --height: 70px;
+    border-radius: 8px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    max-width: 100%;
+    height: var(--height);
+    line-height: var(--height);
+    font-size: 20px;
+    position: fixed;
+    top: 16px;
+    left: 120px;
+    opacity: 0;
+    padding-left: 2rem;
+    letter-spacing: 1.1px;
+    transform: translateY(-200%);
+    will-change: animation;
+    animation: fadeIn ease-in 0.4s;
+}
+
+section.alert {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all linear 1s;
+}
+
+section.alert.success {
+    color: #27805A;
+    background-color: #D4EDDA;
+}
+
+section.alert.success span {
+    color: #155724;
+    font-weight: bold;
+}
+
+section.alert.failed {
+    color: #8E3637;
+    background-color: #F8D7DA;
+}
+
+section.alert.failed span {
+    color: #981C24;
+    font-weight: bold;
+}
+/* /alert */

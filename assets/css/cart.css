@@ -1,0 +1,129 @@
+:root {
+    --table-heading-color: #F5F7FA;
+    --btn-checkout-color: #FBB710;
+}
+
+section.main-cart__container {
+    display: flex;
+    flex-direction: column;
+}
+
+section.main-cart__container-title {
+    width: 100%;
+}
+
+h4.title {
+    font-size: 3.2rem;
+    padding: 1.2rem 0;
+    color: var(--title-color);
+}
+
+/* Main left */
+section.main-cart__container-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+section.main-cart__table {
+    margin: 0;
+    padding: 0;
+    border: collapse;
+}
+
+table.table-list {
+    width: 100%;
+    border: none;
+}
+
+thead.table-list_heading {
+    background-color: var(--table-heading-color);
+}
+
+thead.table-list_heading th.heading-title {
+    height: 4rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+}
+
+td.table-list__body-column {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+td.table-list__body-column img {
+    width: 12rem;
+    padding: 1.2rem 0;
+}
+
+td.table-list__body-column:last-child {
+    color: #ff0000;
+    padding: 0 1.6rem;
+}
+
+button.btn-quantity {
+    font-size: 1.8rem;
+    padding: 1.2rem;
+    cursor: pointer;
+    background-color: var(--table-heading-color);
+}
+
+input.input-quantity {
+    width: 6rem;
+    padding: 1.2rem;
+    font-size: 1.8rem;
+    background-color: var(--table-heading-color);
+}
+
+/* Main right */
+section.main-cart__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 60vh;
+    background-color: var(--table-heading-color);
+    padding: 2rem 1.8rem 3.2rem 1.8rem;
+    user-select: none;
+}
+
+h4.main-cart__right-title {
+    width: 100%;
+    font-size: 2.6rem;
+    color: var(--text-color);
+}
+
+ul.main-cart__right-list {
+    padding: 2.4rem 0;
+    width: 100%;
+}
+
+li.main-cart__right-item {
+    width: 100%;
+    padding: 1.4rem 0;
+    font-size: 1.6rem;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.main-cart__right-active {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.btn-checkout {
+    width: 100%;
+    padding: 1.1rem 0;
+    font-size: 2.2rem;
+    color: var(--white-color);
+    cursor: pointer;
+    background-color: var(--btn-checkout-color);
+}
+
+button.btn-checkout:hover {
+    background-color: var(--black-color);
+    transition: all ease 0.4s;
+}
