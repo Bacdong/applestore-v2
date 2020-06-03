@@ -118,6 +118,10 @@
         a.pagination-item__link.active {
             border: 1px solid #7bb6f7;
         }
+
+        section.go-to-top {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -245,6 +249,7 @@
 
     <!-- main javascript -->
     <script src="assets/js/javascript.js"></script>
+    <script src="assets/js/gototop.js"></script>
     <!-- /main javascript -->
 </body>
 </html>
