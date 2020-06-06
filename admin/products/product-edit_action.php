@@ -16,9 +16,14 @@
     $category_id = $_POST['category_id'];
     $admin_id = 1;
     $status = 0;
+    // echo $status;
+    // die;
     if(isset($_POST['status'])) {
-        $status = $_POST['status'];
+        // $status = $_POST['status'];
+        $status = 1;
     }
+    // echo $status;
+    // die;
     
     $query = "UPDATE products SET name = '".$name."', price = '".$price."'$thumbnail, category_id = '".$category_id."', admin_id = '".$admin_id."', status = '".$status."' WHERE id=".$id;
     $status_update = $connection->query($query);

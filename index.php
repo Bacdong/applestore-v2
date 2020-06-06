@@ -78,7 +78,6 @@
             $query = "SELECT COUNT(*) as totalRecord FROM products WHERE status = 1 and name LIKE '%".$nameSearch."%'";
             $result =  $connection->query($query)->fetch_assoc();
             $pageTotal = ceil($result['totalRecord'] / $result['totalRecord']);
-
         } else {
             $query = "SELECT * FROM products WHERE status = 1 limit ".$offset.",".$item_in_page;
             $result = $connection->query($query);
@@ -178,7 +177,7 @@
                         </div>
                         <div class="products-description">
                             <h3 class="products-name"><?=$late_product['name'];?></h3>
-                            <span class="products-price"><?php echo '$'.$late_product['price'];?></span>
+                            <span class="products-price"><?php echo '$'.number_format($late_product['price']);?></span>
                         </div>
                     </a>
                     <!-- /column -->
