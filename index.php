@@ -70,14 +70,31 @@
             $query = "SELECT * FROM products WHERE status = 1 and name LIKE '%".$nameSearch."%'";
             $result = $connection->query($query);
             $productsAll = array();
-            while($row = $result->fetch_assoc()) {
-                $productsAll[] = $row;
-            }
+            
+            if ($result->fetch_assoc() != NULL) {
+                while($row = $result->fetch_assoc()) {
+                    $productsAll[] = $row;
+                }
+                // $query = "SELECT COUNT(*) as totalRecord FROM products WHERE status = 1 and name LIKE '%".$nameSearch."%' limit ".$offset.",".$item_in_page;
+                $query = "SELECT COUNT(*) as totalRecord FROM products WHERE status = 1 and name LIKE '%".$nameSearch."%'";
+                $result =  $connection->query($query)->fetch_assoc();
+                $pageTotal = ceil($result['totalRecord'] / $result['totalRecord']);
+            } else {
+                setcookie('msg', 'Product search is not find!', time()+1);
+                $query = "SELECT * FROM products WHERE status = 1 limit ".$offset.",".$item_in_page;
+                $result = $connection->query($query);
+                $productsAll = array();
+                while($row = $result->fetch_assoc()) {
+                    $productsAll[] = $row;
+                }
 
-            // $query = "SELECT COUNT(*) as totalRecord FROM products WHERE status = 1 and name LIKE '%".$nameSearch."%' limit ".$offset.",".$item_in_page;
-            $query = "SELECT COUNT(*) as totalRecord FROM products WHERE status = 1 and name LIKE '%".$nameSearch."%'";
-            $result =  $connection->query($query)->fetch_assoc();
-            $pageTotal = ceil($result['totalRecord'] / $result['totalRecord']);
+                $query = 'SELECT COUNT(*) as totalRecord FROM products WHERE status = 1;';
+                $result =  $connection->query($query)->fetch_assoc();
+                $pageTotal = ceil($result['totalRecord'] / $item_in_page);
+                
+            }
+            
+
         } else {
             $query = "SELECT * FROM products WHERE status = 1 limit ".$offset.",".$item_in_page;
             $result = $connection->query($query);

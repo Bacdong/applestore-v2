@@ -103,12 +103,11 @@
                 </div>
                 
                 <div class="single-product-active">
-                    <form action="add-to-cart.php" method="GET" id="form-add-to-cart">
-                        <input name="id-product" hidden value="<?=$id;?>" />
+                    <form action="cart.php?action=add" method="POST" id="form-add-to-cart">
                         <div class="active-quantity">
                             <div class="quantity-current">
                                 <span class="active-name">Quantity: </span>
-                                <input name="current-quantity" type="text" id="input_quantity" pattern="[0-9]*" value="1">
+                                <input name="current-quantity[<?=$id;?>]" type="text" id="input_quantity" pattern="[0-9]*" value="1">
                             </div>
                             <div class="quantity">
                                 <input value="+" type="button" onclick="quantityUp();" class="active-quantity__increase" />

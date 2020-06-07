@@ -1,6 +1,6 @@
 <?php
 
-    session_start();
+    // session_start();
     require_once('connection.php');
     $query_cate = 'SELECT * FROM categories;';
     $result = $connection->query($query_cate);
@@ -89,7 +89,7 @@
 
             <!-- header right carts -->
             <div class="header-auth__carts">
-                <a href="" class="auth-carts__link">
+                <a href="cart.php" class="auth-carts__link">
                     <img src="https://t4.ftcdn.net/jpg/01/63/42/79/240_F_163427943_W56xtj7YydS4YujdUqQot94IINtt91FV.jpg" alt="Your carts">
                 </a>
             </div>
