@@ -1,5 +1,6 @@
 <?php
     session_start();
+    // session_destroy();
     require_once('public/connection.php');
     date_default_timezone_set('Asia/Ho_Chi_Minh');
 
@@ -27,6 +28,7 @@
             $items[] = $row;
         }
     }
+    
     
 ?>
 
@@ -98,6 +100,7 @@
                         </table>
                     </section>
                 </section>
+                
                 <section class="main-cart__right c-12 l-3 m-3">
                     <div class="main-cart__right-top">
                         <h4 class="main-cart__right-title">Cart Total</h4>
