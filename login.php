@@ -26,7 +26,7 @@
             <h3 class="title-form">Sign in</h3>
             <form action="login_action.php" method="POST" class="form-login" onsubmit="checkLogin();">
                 <label for="" class="label-form">Username</label>
-                <input id="username-login" name="username" value="" type="text" class="input" onchange="checkUsernameLogin();" placeholder="Enter your username..." title="Your name must be more than 5 characters.">
+                <input id="username-login" name="username" value="" type="text" class="input" onchange="checkUsernameLogin();" onblur="checkUsernameLogin();" placeholder="Enter your username..." title="Your name must be more than 5 characters.">
                 <span id="username-login-error" class="error">Username is not valid!</span>
 
                 <label for="" class="label-form">Password</label>

@@ -19,6 +19,11 @@
     }
 
     if (!empty($_SESSION['cart'])) {
+
+        // echo '<pre>';
+        // var_dump($_SESSION['cart']);
+        // echo '</pre>';
+
         $condition_query = implode(',', array_keys($_SESSION['cart']));
         // echo $condition_query; die;
         $query = "SELECT * FROM products WHERE id IN(".$condition_query.")";
