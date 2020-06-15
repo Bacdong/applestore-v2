@@ -1,7 +1,11 @@
 <?php
     require_once('../../public/connection.php');
-    $currentThumbnail = $_POST['image'];
-    echo $currentThumbnail; die;
+    if(isset($_POST['image'])) {
+        $currentThumbnail = $_POST['image'];
+    } else {
+        $currentThumbnail = "";
+    }
+    
     // upload file
     $target = "../../img/product/";
     $thumbnail = '';

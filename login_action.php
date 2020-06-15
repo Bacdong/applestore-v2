@@ -2,10 +2,10 @@
     ob_start();
     session_start();
     require_once('public/connection.php');
-
     $username = $_POST['username'];
     // $password = sha1($_POST['password']);
     $password = $_POST['password'];
+    $password = sha1($password);
 
     // test security for users password
     // $password = $password.$id;
@@ -17,7 +17,7 @@
     // die;
     // test security for users password - end
 
-    $query_users = "SELECT * FROM users WHERE username = '".$username."' and password = '".sha1($_POST['password'])."' and status = 1;";
+    $query_users = "SELECT * FROM users WHERE username = '".$username."' and password = '".$password."' and status = 1;";
     
     $author = $connection->query($query_users)->fetch_assoc();
 

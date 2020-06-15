@@ -24,6 +24,7 @@
 
     $query = "INSERT INTO products(name,price,image,category_id,created_at,admin_id,status) VALUES('".$name."','".$price."','".$thumbnail."','".$category_id."','".$created_at."','".$admin_id."','".$status."');";
     $status_add = $connection->query($query);
+    // die($query);
 
     if($status_add == true) {
         setcookie('msg', 'Create successfully!',time()+1);
