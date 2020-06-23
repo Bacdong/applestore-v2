@@ -1,5 +1,6 @@
 <?php
     // phpinfo(); die;
+    session_start();
     require_once('public/connection.php');
     //import query
     require_once('public/query/query_index.php');

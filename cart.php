@@ -9,11 +9,24 @@
     }
 
     if (isset($_GET['action'])) {
+        function updateCart($add = false) {
+            foreach ($_POST['current-quantity'] as $id => $quantity) {
+                if ($quantity == 0) {
+                    unset($_SESSION['cart'][$id]);
+                } else {
+                    if ($add) {
+                        $_SESSION['cart'][$id] += $quantity;
+                    } else {
+                        $_SESSION['cart'][$id] = $quantity;
+                    }
+                }
+
+            }
+        }
+
         switch ($_GET['action']) {
             case "add":
-                foreach ($_POST['current-quantity'] as $id => $quantity) {
-                    $_SESSION['cart'][$id] = $quantity;
-                }
+                updateCart(true);
                 break;
 
             case "delete":
@@ -44,8 +57,14 @@
         }
     }
 
-    
-    
+    // Show list ordered
+    $qry = "SELECT o.totalPrice, od.* FROM orders o LEFT JOIN order_details od ON o.id = od.order_id";
+    $rs = $connection->query($qry);
+    $ordereds = array();
+    while ($row = $rs->fetch_assoc()) {
+        $ordereds[] = $row;
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -82,10 +101,57 @@
                 text-decoration: underline;
                 opacity: 0.7;
             }
+
+            .list-ordered {
+                width: 100%;
+                border: 1px solid #dbdbdb;
+                border-radius: 20px;
+                margin-bottom: 20px;
+            }
+
+            h4 {
+                font-size: 20px;
+                color: #444;
+                font-weight: normal;
+            }
+
+            span.total-price-ordered {
+                font-size: 20px;
+                color: red;
+                padding-left: 16px;
+            }
+
+            .card-ordered {
+                width: 100%;
+                min-height: 80px;
+                padding: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .card-ordered span {
+                font-size: 18px;
+            }
+
+            span.price-ordered,
+            span.total-ordered {
+                color: red;
+            }
         </style>
     </head>
     
     <body>
+        <?php if(isset($_COOKIE['msg'])) { ?>
+            <!-- alert -->
+            <div class="alert success" style="display: flex; justify-content: center; position: fixed; position: absolute; z-index: 11; top: 0; left: 0; right: 0; height: 80px; background-color: transparent; width: 100%;">
+                <div class="notification" style="width: 420px; max-width: 100%; height: 100%; background-color: rgb(168, 228, 182); box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3); border-radius: 8px; font-size: 17px; letter-spacing: 0.8px; display: flex; justify-content: center; align-items: center">
+                    <strong>Notification! </strong> &nbsp; <?php echo $_COOKIE['msg'];?>
+                </div>
+            </div>
+            <!-- /alert -->
+        <?php } ?>
+
         <!-- Header -->
         <?php require_once('public/header.php'); ?>
         <!-- /Header -->
@@ -96,10 +162,34 @@
                     <h4 class="title">Your Cart</h4>
                 </section>
                 
-                <section class="main-cart__container-body">
-                    <section class="main-cart__left l-8">
-                        <section class="main-cart__table">
-                            <form action="cart.php">
+                <form action="cart_action.php" method="POST">
+                    <section class="main-cart__container-body">
+                        <section class="main-cart__left l-8">
+                            <section class="main-cart__table">
+                                <div class="list-ordered">
+                                    <?php 
+                                        $i = 1;
+                                        foreach ($ordereds as $order) {
+                                    ?>
+                                        <div class="card-ordered">
+                                            <span class="stt"><?=$i;?></span>
+                                            <span class="name-ordered"><?=$order['name'];?></span>
+                                            <span class="price-ordered"><?php echo '$'.number_format($order['price']);?></span>
+                                            <span class="icon-multi">X</span>
+                                            <span class="qty-ordered"><?=$order['quantity'];?></span>
+                                            <span class="total-ordered"><?php echo '$'.number_format($order['price'] * $order['quantity']);?></span>
+                                        </div>
+                                    <?php
+                                            $i++; 
+                                        }
+                                    ?>
+                                    <div class="card-ordered">
+                                        <h4>Total: <span class="total-price-ordered"><?=$order['totalPrice'];?></span></h4>
+                                        <span class="status-ordered">Unconfirm</span>
+                                    </div>
+                                    
+                                </div>
+
                                 <table class="table-list">
                                     <thead class="table-list_heading">
                                         <th class="heading-title">Image</th>
@@ -143,59 +233,59 @@
                                         ?>
                                     </tbody>
                                 </table>
-                            </form>
+                            </section>
+                        </section>
+                        
+                        <section class="main-cart__right c-12 l-3 m-3">
+                            <div class="main-cart__right-top">
+                                <h4 class="main-cart__right-title">Cart Total</h4>
+            
+                                <ul class="main-cart__right-list">
+                                    <li class="main-cart__right-item">
+                                        Subtotal: 
+                                        <span class="main-cart__right-item-span">$
+                                            <?php 
+                                                if (!empty($subtotal)) {
+                                                    echo number_format($subtotal);
+                                                } else {
+                                                    echo '0';
+                                                }
+                                            ?>
+                                        </span>
+                                    </li>
+                                    <li class="main-cart__right-item">
+                                        Delivery (5%): 
+                                        <span class="main-cart__right-item-span">$
+                                            <?php 
+                                                if (!empty($subtotal)) {
+                                                    echo number_format($subtotal * 0.05);
+                                                } else {
+                                                    echo '0';
+                                                }
+                                            ?>
+                                        </span>
+                                    </li>
+                                    <li class="main-cart__right-item">
+                                        Total: 
+                                        <span class="main-cart__right-item-span">$
+                                            <?php 
+                                                if (!empty($subtotal)) {
+                                                    echo number_format($subtotal + ($subtotal * 0.05));
+                                                } else {
+                                                    echo '0';
+                                                }
+                                            ?>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="main-cart__right-active">
+                                <button type="submit" class="btn-checkout">CHECKOUT</button>
+                            </div>
                         </section>
                     </section>
-                    
-                    <section class="main-cart__right c-12 l-3 m-3">
-                        <div class="main-cart__right-top">
-                            <h4 class="main-cart__right-title">Cart Total</h4>
-        
-                            <ul class="main-cart__right-list">
-                                <li class="main-cart__right-item">
-                                    Subtotal: 
-                                    <span class="main-cart__right-item-span">$
-                                        <?php 
-                                            if (!empty($subtotal)) {
-                                                echo number_format($subtotal);
-                                            } else {
-                                                echo '0';
-                                            }
-                                        ?>
-                                    </span>
-                                </li>
-                                <li class="main-cart__right-item">
-                                    Delivery (5%): 
-                                    <span class="main-cart__right-item-span">$
-                                        <?php 
-                                            if (!empty($subtotal)) {
-                                                echo number_format($subtotal * 0.05);
-                                            } else {
-                                                echo '0';
-                                            }
-                                        ?>
-                                    </span>
-                                </li>
-                                <li class="main-cart__right-item">
-                                    Total: 
-                                    <span class="main-cart__right-item-span">$
-                                        <?php 
-                                            if (!empty($subtotal)) {
-                                                echo number_format($subtotal + ($subtotal * 0.05));
-                                            } else {
-                                                echo '0';
-                                            }
-                                        ?>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="main-cart__right-active">
-                            <button class="btn-checkout">CHECKOUT</button>
-                        </div>
-                    </section>
-                </section>
+                </form>
             </section>
         </section>
 

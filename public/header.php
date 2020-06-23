@@ -52,7 +52,7 @@
                 <div class="header-auth__users">
                     <a href="" class="auth-users__link">
                         <div class="auth-users__avatar" style="background-image: url('<?=$_SESSION['author']['avatar'];?>');">
-                            <div class="auth-users__fullname">Welcom! <?=$_SESSION['author']['name']; ?></div>
+                            <div class="auth-users__fullname" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; align-items: center; font-size: 20px; padding-left: 8px;">Welcom! <?=$_SESSION['author']['name']; ?></div>
                         </div>
                         <div class="auth-users__setting" style="margin-top: 2px !important;">
                             <ul class="users-setting__list">
