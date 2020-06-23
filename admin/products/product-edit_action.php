@@ -3,7 +3,7 @@
     if(isset($_POST['image'])) {
         $currentThumbnail = $_POST['image'];
     } else {
-        $currentThumbnail = "";
+        $currentThumbnail = "../../img/product/temp.png";
     }
     
     // upload file
