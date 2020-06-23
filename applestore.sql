@@ -11,7 +11,7 @@
  Target Server Version : 100411
  File Encoding         : 65001
 
- Date: 06/05/2020 17:38:50
+ Date: 23/06/2020 23:45:37
 */
 
 SET NAMES utf8mb4;
@@ -37,21 +37,6 @@ CREATE TABLE `admins`  (
 -- Records of admins
 -- ----------------------------
 INSERT INTO `admins` VALUES (1, 'Dương Bắc', 'Đông', 'duongdong2203@gmail.com', 'admin', 'D033E22AE348AEB5660FC2140AEC35850C4DA997', 2, 1);
-
--- ----------------------------
--- Table structure for bills
--- ----------------------------
-DROP TABLE IF EXISTS `bills`;
-CREATE TABLE `bills`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) NULL DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `product_id`(`product_id`) USING BTREE,
-  INDEX `user_id`(`user_id`) USING BTREE,
-  CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for categories
@@ -131,6 +116,57 @@ INSERT INTO `details` VALUES (30, 'OLED, 6.5\", Super Retina', 'iOS 12', '7 MP',
 INSERT INTO `details` VALUES (31, 'OLED, 6.5\", Super Retina XDR', 'iOS 13', '12 MP', '3 Camera 12 MP', 'Apple A13 Bionic 6 core', '4GB', '512GB', 'Lightning, NFC, OTG', 'Li-ion, 3969 mAg', '8.1 mm, 226g', 31);
 
 -- ----------------------------
+-- Table structure for news_letter
+-- ----------------------------
+DROP TABLE IF EXISTS `news_letter`;
+CREATE TABLE `news_letter`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` int(1) NULL DEFAULT NULL,
+  `register_at` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of news_letter
+-- ----------------------------
+INSERT INTO `news_letter` VALUES (18, 'anhduc@gmail.com', 1, '2020-06-05 14:09:06');
+
+-- ----------------------------
+-- Table structure for order_details
+-- ----------------------------
+DROP TABLE IF EXISTS `order_details`;
+CREATE TABLE `order_details`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `price` decimal(10, 0) NULL DEFAULT NULL,
+  `quantity` int(11) NULL DEFAULT NULL,
+  `created_at` datetime(0) NULL DEFAULT NULL,
+  `status` int(11) NULL DEFAULT NULL,
+  `order_id` int(11) NULL DEFAULT NULL,
+  `product_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `order_id`(`order_id`) USING BTREE,
+  INDEX `product_id`(`product_id`) USING BTREE,
+  CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for orders
+-- ----------------------------
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NULL DEFAULT NULL,
+  `totalPrice` decimal(10, 0) NULL DEFAULT NULL,
+  `created_at` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `user_id`(`user_id`) USING BTREE,
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for products
 -- ----------------------------
 DROP TABLE IF EXISTS `products`;
@@ -149,7 +185,7 @@ CREATE TABLE `products`  (
   INDEX `admin_id`(`admin_id`) USING BTREE,
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `products_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 36 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of products
@@ -175,7 +211,7 @@ INSERT INTO `products` VALUES (18, 'Apple Watch S5', 531, 'img/product/10013.png
 INSERT INTO `products` VALUES (19, 'Apple Watch S5 Black', 490, 'img/product/10012.png', 100, '2020-04-21 22:40:00', 1, 4, 1);
 INSERT INTO `products` VALUES (20, 'iPad Wifi 32GB 2019', 387, 'img/product/10011.png', 100, '2020-04-21 22:40:37', 1, 2, 1);
 INSERT INTO `products` VALUES (21, ' iPad Wifi 32GB 2018', 374, 'img/product/10010.png', 100, '2020-04-21 22:41:30', 1, 2, 1);
-INSERT INTO `products` VALUES (22, 'iPhone X 64GB', 861, 'img/product/10009.png', 100, '2020-04-21 22:42:06', 1, 1, 1);
+INSERT INTO `products` VALUES (22, 'iPhone XR 64GB', 861, 'img/product/10009.png', 100, '2020-04-21 22:42:06', 1, 1, 1);
 INSERT INTO `products` VALUES (23, 'iPhone 7S Plus 32GB', 559, 'img/product/10008.png', 100, '2020-04-21 22:42:42', 1, 1, 1);
 INSERT INTO `products` VALUES (24, 'iMac 5K Rena', 2068, 'img/product/10007.png', 100, '2020-04-21 22:43:24', 1, 3, 1);
 INSERT INTO `products` VALUES (25, 'MacPro Touch 512GB', 3016, 'img/product/10006.png', 100, '2020-04-21 22:44:18', 1, 3, 1);
@@ -185,7 +221,6 @@ INSERT INTO `products` VALUES (28, 'iPad Cellular 32GB 2019', 559, 'img/product/
 INSERT INTO `products` VALUES (29, 'iPad Cellular 64GB 2019', 646, 'img/product/10002.png', 100, '2020-04-21 22:46:39', 1, 2, 1);
 INSERT INTO `products` VALUES (30, 'iPhone XS Max 256GB', 1465, 'img/product/10001.png', 100, '2020-04-21 22:47:14', 1, 1, 1);
 INSERT INTO `products` VALUES (31, 'iPhone 11 Pro Max 512GB', 1896, 'img/product/10000.png', 100, '2020-04-21 22:47:55', 1, 1, 1);
-INSERT INTO `products` VALUES (33, 'Test', 123, 'img/product/vidu.png', NULL, '2020-04-25 04:29:49', 0, 2, 1);
 INSERT INTO `products` VALUES (34, 'Test Upload Ảnh', 987, 'img/product/avt.jpg', NULL, '2020-04-25 04:31:39', 0, 1, 1);
 INSERT INTO `products` VALUES (35, 'test', 123, 'img/product/btnThem1SVDB.jpg', NULL, '2020-04-28 19:07:48', 0, 1, 1);
 
@@ -206,16 +241,6 @@ CREATE TABLE `users`  (
   `created_at` date NULL DEFAULT NULL,
   `status` int(11) NULL DEFAULT NULL COMMENT '1-active, 0-deactive',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of users
--- ----------------------------
-INSERT INTO `users` VALUES (1, 'Bùi Trung', 'Hậu', 'trunghau@gmail.com', '0912345721', 'Huyện Củ Chi', 'trunghau', '7123875b6ff258ab173aa1a4862b97ab5aeb3352', 'img/users/ArL&Jtable2.jpg', '2020-04-25', 1);
-INSERT INTO `users` VALUES (3, 'Test number', 'Test', 'test@gmail.com', '0912345726', 'TP.HCM', 'number1', '995fad74eddcfe71b2f53b5d9ebdb37ab81f46a2', 'img/users/logo.png', '2020-04-25', 1);
-INSERT INTO `users` VALUES (24, 'Dương Bắc', 'Đông', 'duongdong2203@gmail.com', '0915272291', 'Saigon University', 'bacdong', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'img/users/avt.jpg', '2020-04-28', 1);
-INSERT INTO `users` VALUES (25, 'Dương Bắc', 'Đông', NULL, NULL, NULL, 'bacdong', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', NULL, '2020-04-28', 0);
-INSERT INTO `users` VALUES (26, 'Test ', 'Test', NULL, NULL, NULL, 'test', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', NULL, NULL, NULL);
-INSERT INTO `users` VALUES (27, 'test', 'test', 'test@gmail.com', '123123', '123123', 'test123', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL, '2020-05-04', 1);
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
