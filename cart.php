@@ -20,7 +20,6 @@
                         $_SESSION['cart'][$id] = $quantity;
                     }
                 }
-
             }
         }
 
@@ -58,11 +57,14 @@
     }
 
     // Show list ordered
-    $qry = "SELECT o.totalPrice, od.* FROM orders o LEFT JOIN order_details od ON o.id = od.order_id";
-    $rs = $connection->query($qry);
-    $ordereds = array();
-    while ($row = $rs->fetch_assoc()) {
-        $ordereds[] = $row;
+    if (isset($_SESSION['author'])) {
+        $user_id = $_SESSION['author']['id'];
+        $qry = "SELECT o.totalPrice, od.* FROM orders o LEFT JOIN order_details od ON o.id = od.order_id WHERE o.user_id =".$user_id;
+        $rs = $connection->query($qry);
+        $ordereds = array();
+        while ($row = $rs->fetch_assoc()) {
+            $ordereds[] = $row;
+        }
     }
 
 ?>
@@ -166,29 +168,33 @@
                     <section class="main-cart__container-body">
                         <section class="main-cart__left l-8">
                             <section class="main-cart__table">
-                                <div class="list-ordered">
-                                    <?php 
-                                        $i = 1;
-                                        foreach ($ordereds as $order) {
-                                    ?>
+                                <?php 
+                                    if (isset($_SESSION['author'])) {
+                                ?>
+                                    <div class="list-ordered">
+                                        <?php 
+                                            $i = 1;
+                                            foreach ($ordereds as $order) {
+                                        ?>
+                                            <div class="card-ordered">
+                                                <span class="stt"><?=$i;?></span>
+                                                <span class="name-ordered"><?=$order['name'];?></span>
+                                                <span class="price-ordered"><?php echo '$'.number_format($order['price']);?></span>
+                                                <span class="icon-multi">X</span>
+                                                <span class="qty-ordered"><?=$order['quantity'];?></span>
+                                                <span class="total-ordered"><?php echo '$'.number_format($order['price'] * $order['quantity']);?></span>
+                                            </div>
+                                        <?php
+                                                $i++; 
+                                            }
+                                        ?>
                                         <div class="card-ordered">
-                                            <span class="stt"><?=$i;?></span>
-                                            <span class="name-ordered"><?=$order['name'];?></span>
-                                            <span class="price-ordered"><?php echo '$'.number_format($order['price']);?></span>
-                                            <span class="icon-multi">X</span>
-                                            <span class="qty-ordered"><?=$order['quantity'];?></span>
-                                            <span class="total-ordered"><?php echo '$'.number_format($order['price'] * $order['quantity']);?></span>
+                                            <h4>Total: <span class="total-price-ordered"><?=$order['totalPrice'];?></span></h4>
+                                            <span class="status-ordered">Unconfirm</span>
                                         </div>
-                                    <?php
-                                            $i++; 
-                                        }
-                                    ?>
-                                    <div class="card-ordered">
-                                        <h4>Total: <span class="total-price-ordered"><?=$order['totalPrice'];?></span></h4>
-                                        <span class="status-ordered">Unconfirm</span>
+                                        
                                     </div>
-                                    
-                                </div>
+                                <?php } ?>
 
                                 <table class="table-list">
                                     <thead class="table-list_heading">
