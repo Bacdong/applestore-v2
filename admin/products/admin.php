@@ -18,16 +18,12 @@
         $query = "SELECT p.*, c.description, c.title FROM products p LEFT JOIN categories c ON p.category_id = c.id ORDER BY created_at desc;";
     }
 
-    // die($query);
-
-
     // $query = "SELECT p.*, c.description, c.title FROM products p LEFT JOIN categories c ON p.category_id = c.id ORDER BY created_at desc;";
     $result = $connection->query($query);
     $products = array();
     while($row = $result->fetch_assoc()) {
         $products[] = $row;
     }
-    
 
     // query show categories add product
     $query_add = 'SELECT * FROM categories';
@@ -96,10 +92,10 @@
     <!-- /header -->
 
     <?php if(isset($_COOKIE['msg'])) { ?>
-    <!-- Edit successfull -->
-    <section class="alert success">
-            <span>Notification!</span><?php echo ' '.$_COOKIE['msg'];?>
-    </section>
+        <!-- Edit successfull -->
+        <section class="alert success">
+                <span>Notification!</span><?php echo ' '.$_COOKIE['msg'];?>
+        </section>
     <?php } ?>
 
     <main class="container grid">
@@ -187,6 +183,7 @@
                             <span class="error">Product's name is not valid!</span>
 
                             <label for="" class="title-input">Category</label>
+
                             <select name="category-id" id="category-search">
                                 <?php foreach($categories as $cate) { ?>
                                 <option value="<?=$cate['id'];?>"><?=$cate['description'];?></option>

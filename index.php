@@ -1,4 +1,11 @@
 <?php
+
+    // CRUD
+    // C: Create New
+    // R: Read Data
+    // U: Update
+    // Destroy/Delete
+
     // phpinfo(); die;
     session_start();
     require_once('public/connection.php');

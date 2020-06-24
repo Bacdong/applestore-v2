@@ -178,6 +178,7 @@
                             <th class="head-title">Order Date</th>
                             <th class="head-title">Price</th>
                             <th class="head-title">Status</th>
+                            <th class="head-title">Active</th>
                         </thead>
 
                         <tbody class="table-body">
@@ -199,6 +200,17 @@
                                         echo 'Confirmed';
                                     }
                                 ?>
+                                </td>
+                                <td class="table-column">
+                                    <a style="color: #333;" href="bill_action.php?id=<?=$bill['id'];?>&status=<?=$bill['status'];?>">
+                                        <?php
+                                            if ($bill['status'] == 0) {
+                                                echo 'Confirm';
+                                            } else {
+                                                echo 'Destroy';
+                                            }
+                                        ?>
+                                    </a>
                                 </td>
                             </tr>
                             <?php 
