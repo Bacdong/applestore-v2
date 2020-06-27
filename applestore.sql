@@ -11,7 +11,7 @@
  Target Server Version : 100411
  File Encoding         : 65001
 
- Date: 23/06/2020 23:45:37
+ Date: 24/06/2020 14:30:19
 */
 
 SET NAMES utf8mb4;
@@ -150,7 +150,14 @@ CREATE TABLE `order_details`  (
   INDEX `product_id`(`product_id`) USING BTREE,
   CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of order_details
+-- ----------------------------
+INSERT INTO `order_details` VALUES (15, 'iPad Cellular 64GB 2019', 646, 1, '2020-06-24 02:06:32', NULL, 11, 29);
+INSERT INTO `order_details` VALUES (16, 'iPhone XS Max 256GB', 1465, 4, '2020-06-24 02:06:32', NULL, 11, 30);
+INSERT INTO `order_details` VALUES (17, 'iPhone XS Max 256GB', 1465, 6, '2020-06-24 07:10:16', NULL, 12, 30);
 
 -- ----------------------------
 -- Table structure for orders
@@ -161,10 +168,17 @@ CREATE TABLE `orders`  (
   `user_id` int(11) NULL DEFAULT NULL,
   `totalPrice` decimal(10, 0) NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
+  `status` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of orders
+-- ----------------------------
+INSERT INTO `orders` VALUES (11, 37, 6831, '2020-06-24 02:06:32', 0);
+INSERT INTO `orders` VALUES (12, 37, 9230, '2020-06-24 07:10:16', 1);
 
 -- ----------------------------
 -- Table structure for products
@@ -185,7 +199,7 @@ CREATE TABLE `products`  (
   INDEX `admin_id`(`admin_id`) USING BTREE,
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `products_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of products
@@ -223,6 +237,7 @@ INSERT INTO `products` VALUES (30, 'iPhone XS Max 256GB', 1465, 'img/product/100
 INSERT INTO `products` VALUES (31, 'iPhone 11 Pro Max 512GB', 1896, 'img/product/10000.png', 100, '2020-04-21 22:47:55', 1, 1, 1);
 INSERT INTO `products` VALUES (34, 'Test Upload Ảnh', 987, 'img/product/avt.jpg', NULL, '2020-04-25 04:31:39', 0, 1, 1);
 INSERT INTO `products` VALUES (35, 'test', 123, 'img/product/btnThem1SVDB.jpg', NULL, '2020-04-28 19:07:48', 0, 1, 1);
+INSERT INTO `products` VALUES (42, 'Test', 123, '', NULL, '2020-06-24 12:45:07', 0, 1, 1);
 
 -- ----------------------------
 -- Table structure for users
@@ -241,6 +256,11 @@ CREATE TABLE `users`  (
   `created_at` date NULL DEFAULT NULL,
   `status` int(11) NULL DEFAULT NULL COMMENT '1-active, 0-deactive',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES (37, NULL, 'Dương Bắc Đông', NULL, '0915272291', NULL, 'bacdong', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL, '2020-06-24', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
