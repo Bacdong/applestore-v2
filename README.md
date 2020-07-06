@@ -10,6 +10,9 @@ To use, you need:
 * First, you need to create a new database with the name "applestore".
 * Next, import the applestore.sql file into the newly created database.
 
+Account to access admin page:
+- username: admin
+- password: admin
 
 This is a MyTeam Project Web2 - PHP &amp; MySQL | Apple Store
 
