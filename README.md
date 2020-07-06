@@ -6,10 +6,9 @@ Before you begin, you should make sure you have the IDE ready to support writing
 * You have install the latest version of PHP in IDE Code.
 * You have opened the connection to the database (MySQL).
 
-* To use, you need:
-First, you need to create a new database with the name "applestore".
-
-Next, import the applestore.sql file into the newly created database.
+To use, you need:
+* First, you need to create a new database with the name "applestore".
+* Next, import the applestore.sql file into the newly created database.
 
 
 This is a MyTeam Project Web2 - PHP &amp; MySQL | Apple Store
