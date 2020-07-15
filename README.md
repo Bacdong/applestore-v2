@@ -1,4 +1,7 @@
 ### Project name: Apple Store.
+```
+Project for subjects \"Web application development 2\" at Saigon University.
+```
 #### This is a MyTeam Project Web2 - PHP &amp; MySQL | Apple Store
 
 #### *Prerequisites:
