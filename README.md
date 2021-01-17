@@ -1,4 +1,4 @@
-## Project name: Apple Store ##
+## Apple Store Version 2 ##
 ```
 Project for subjects \"Web application development 2\" at Saigon University.
 ```
